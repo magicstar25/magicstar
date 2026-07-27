@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic Star Guardería | Donde cada pequeño comienza a brillar</title>
+  <style>
+    :root {
+      --turquesa: #34C4C2;
+      --verde-lima: #A1E544;
+      --amarillo: #F9D949;
+      --azul-medio: #3E92F3;
+      --azul-marino: #004B8D;
+      --rojo-destacado: #FF5A5F;
+      --fondo-suave: #F8FAFC;
+      --blanco: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--fondo-suave); color: #333; line-height: 1.5; }
+
+    /* HEADER COMPACTO Y LIMPIO */
+    header {
+      background-color: var(--blanco);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo img { height: 48px; width: auto; display: block; }
+
+    /* NAV ADAPTABLE PARA CELULAR */
+    nav {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 4px 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      text-decoration: none;
+      color: var(--azul-marino);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--turquesa); }
+
+    /* HERO CON PATIO VISIBLE */
+    .hero {
+      position: relative;
+      padding: 45px 5% 50px 5%;
+      text-align: center;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.65)), url('patio.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-text h1 { color: var(--azul-marino); font-size: 1.9rem; margin: 12px 0; font-weight: 800; line-height: 1.25; }
+    
+    /* SUBTÍTULO CON EDAD EN BLANCO Y FONDO AZUL PARA MÁXIMA LEGIBILIDAD */
+    .hero-sub {
+      background-color: var(--azul-marino);
+      color: var(--blanco);
+      font-weight: 800;
+      font-size: 0.92rem;
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .hero-text p { font-size: 0.98rem; color: #1E293B; margin-bottom: 22px; font-weight: 600; text-shadow: 0 1px 2px rgba(255,255,255,0.9); }
+
+    .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.92rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+      transition: transform 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    
+    .btn-visita { background-color: var(--amarillo); color: var(--azul-marino); }
+    .btn-ubicacion { background-color: var(--turquesa); color: white; }
+    /* BOTÓN DE MATRÍCULAS DESTACADO EN EL HERO */
+    .btn-matricula { background: linear-gradient(90deg, #FF5A5F 0%, #FF8A00 100%); color: white; font-weight: 800; }
+
+    .hero-img img { max-width: 220px; width: 100%; height: auto; }
+    .pingui-tag {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-weight: bold;
+      color: var(--azul-marino);
+      font-size: 0.85rem;
+    }
+
+    /* SECCIONES GENERALES */
+    section { padding: 45px 5%; text-align: center; }
+    h2 { color: var(--azul-marino); margin-bottom: 25px; font-size: 1.6rem; font-weight: 800; }
+
+    /* POR QUÉ MAGIC STAR */
+    .por-que { background: var(--blanco); }
+    .grid-caracteristicas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .card-info {
+      background: #F0F9FF;
+      border-radius: 15px;
+      padding: 18px 15px;
+      width: 150px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .card-info .icon { font-size: 1.8rem; margin-bottom: 6px; }
+    .card-info h4 { color: var(--azul-marino); font-size: 0.9rem; }
+
+    /* GALERÍA DE VIDEOS E INSTALACIONES */
+    .galeria-videos { background: #F1F5F9; }
+    .grid-media {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .media-card {
+      background: var(--blanco);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 320px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .media-card video, .media-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .media-card p {
+      padding: 12px;
+      font-weight: bold;
+      color: var(--azul-marino);
+      font-size: 0.9rem;
+    }
+
+    /* TALLERES */
+    .talleres { background: #EBF8FF; }
+    .grid-talleres { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .chip-taller {
+      background: var(--blanco);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      color: var(--azul-marino);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      font-size: 0.88rem;
+    }
+
+    /* SECCIÓN INICIAL Y PRIMARIA */
+    .estrellitas-seccion {
+      background: linear-gradient(135deg, #3E92F3 0%, #004B8D 100%);
+      color: white;
+      border-radius: 20px;
+      margin: 30px 5%;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .estrellitas-seccion h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .estrellitas-seccion p { font-size: 0.95rem; margin-bottom: 20px; }
+    .btn-estrellitas {
+      background-color: var(--amarillo);
+      color: var(--azul-marino);
+      padding: 10px 22px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    /* HORARIOS Y TARIFAS */
+    .cards-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+    .card {
+      background: var(--blanco);
+      border-radius: 16px;
+      padding: 22px;
+      width: 100%;
+      max-width: 280px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--turquesa);
+    }
+    .card.destacada { border-top: 4px solid var(--amarillo); }
+    .card h3 { color: var(--azul-marino); margin-bottom: 6px; font-size: 1.1rem; }
+    .card .precio { font-size: 1.6rem; font-weight: bold; color: var(--turquesa); margin: 8px 0; }
+
+    /* RESEÑAS */
+    .comentarios { background: var(--blanco); }
+    .reviews-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .review-card {
+      background: #F8FAFC;
+      padding: 16px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 320px;
+      text-align: left;
+      border-left: 4px solid var(--turquesa);
+      font-size: 0.9rem;
+    }
+    .review-card p { font-style: italic; color: #475569; margin-bottom: 8px; }
+    .review-card .author { font-weight: bold; color: var(--azul-marino); font-size: 0.82rem; }
+    
+    .form-resena {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #F0F9FF;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: left;
+    }
+    .form-resena label { font-size: 0.85rem; font-weight: bold; color: var(--azul-marino); }
+    .form-resena input, .form-resena textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .btn-submit {
+      background: var(--turquesa);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* SECCIÓN REDES SOCIALES (4 REDES EXACTAS) */
+    .redes-seccion {
+      background: #FFFBEB;
+      border-top: 2px dashed #FDE68A;
+      border-bottom: 2px dashed #FDE68A;
+      padding: 30px 5%;
+      text-align: center;
+    }
+    .redes-seccion h3 { color: var(--azul-marino); margin-bottom: 8px; font-size: 1.3rem; }
+    .cinta-aviso-interna {
+      color: #B45309;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      display: inline-block;
+      background: #FEF3C7;
+      padding: 6px 14px;
+      border-radius: 12px;
+    }
+    .grid-redes {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-red {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.88rem;
+      color: white;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .btn-ws { background-color: #25D366; }
+    .btn-fb { background-color: #1877F2; }
+    .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .btn-tk { background-color: #000000; }
+
+    /* BOTÓN FLOTANTE WHATSAPP COMPACTO */
+    .wspp-flotante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50px;
+      padding: 10px 18px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER / NAVEGACIÓN DESLIZABLE -->
+  <header>
+    <div class="logo">
+      <img src="logo magic star.jpg" alt="Magic Star Guardería">
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#por-que">Nosotros</a>
+      <a href="#instalaciones">Instalaciones</a>
+      <a href="#talleres">Talleres</a>
+      <a href="#estrellitas">Inicial y Primaria</a>
+      <a href="#precios">Tarifas</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#redes">Contacto & Redes</a>
+    </nav>
+  </header>
+
+  <!-- SECCIÓN PRINCIPAL / HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-text">
+      <span class="hero-sub">👶 Guardería para niños desde 6 meses a 6 años</span>
+      <h1>Donde cada pequeño comienza a brillar ⭐</h1>
+      <p>En Magic Star ofrecemos un ambiente seguro, lleno de amor y aprendizaje integral en Cajamarca, Perú.</p>
+      
+      <div class="btn-group">
+        <a href="https://wa.me/message/5GIE76OC67MKC1?text=Hola,%20quisiera%20agendar%20una%20visita" class="btn btn-visita" target="_blank">🟡 Agenda una visita</a>
+        <a href="https://maps.app.goo.gl/uXv4iFvTj1A6jE8R8" class="btn btn-ubicacion" target="_blank">📍 Ubicación</a>
+        <a href="https://wa.me/message/5GIE76OC67MKC1?text=Hola,%20quisiera%20separar%20mi%20vacante%20para%20las%20matriculas" class="btn btn-matricula" target="_blank">🎓 Matrículas Abiertas</a>
+      </div>
+    </div>
+    
+    <div class="hero-img">
+      <img src="mascota magic star - pingui.png" alt="Pingüi Mascota Magic Star">
+      <br>
+      <div class="pingui-tag">🐧 ¡Hola! Soy Pingüi, tu amigo en Magic Star</div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ MAGIC STAR -->
+  <section class="por-que" id="por-que">
+    <h2>🌟 ¿Por qué Magic Star?</h2>
+    <div class="grid-caracteristicas">
+      <div class="card-info">
+        <div class="icon">🩵</div>
+        <h4>Atención personalizada</h4>
+      </div>
+      <div class="card-info">
+        <div class="icon">🎨</div>
+        <h4>Aprendizaje jugando</h4>
+      </div>
+      <div class="card-info">
+        <div class="icon">👩‍🏫</div>
+        <h4>Personal capacitado</h4>
+      </div>
+      <div class="card-info">
+        <div class="icon">🛡️</div>
+        <h4>Ambientes seguros</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA DE VIDEOS E INSTALACIONES (CON ESPACIO PARA TESTIMONIO DE MADRE DE FAMILIA) -->
+  <section class="galeria-videos" id="instalaciones">
+    <h2>🏰 Nuestras Instalaciones y Experiencias</h2>
+    <div class="grid-media">
+      <div class="media-card">
+        <video controls poster="patio.jpeg">
+          <source src="instalaciones.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>
+        <p>🏫 Recorrido por nuestras Instalaciones</p>
+      </div>
+      <div class="media-card">
+        <video controls>
+          <source src="pequenos.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>
+        <p>👶 Aprendiendo y jugando</p>
+      </div>
+      <!-- VIDEO TESTIMONIO DE MADRE DE FAMILIA -->
+      <div class="media-card">
+        <video controls>
+          <source src="testimonio.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>
+        <p>👩‍👦 Testimonio de Madre de Familia</p>
+      </div>
+      <div class="media-card">
+        <img src="ninos.jpeg" alt="Grupo de niños Magic Star" onerror="this.onerror=null; this.src='ninos.jpg';">
+        <p>💖 Nuestra gran familia Magic Star</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TALLERES -->
+  <section class="talleres" id="talleres">
+    <h2>🎨 Talleres y Actividades</h2>
+    <div class="grid-talleres">
+      <div class="chip-taller">🗣️ Inglés</div>
+      <div class="chip-taller">🎨 Arte y Pintura</div>
+      <div class="chip-taller">🤸 Psicomotricidad</div>
+      <div class="chip-taller">🧸 Estimulación Temprana</div>
+      <div class="chip-taller">💃 Danzas</div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN I.E.P. ESTRELLITAS MÁGICAS -->
+  <div class="estrellitas-seccion" id="estrellitas">
+    <h3>⭐ I.E.P. Estrellitas Mágicas</h3>
+    <p>¿Buscas continuidad educativa? Ofrecemos los niveles de <strong>Inicial y Primaria</strong> para la formación integral de tus niños.</p>
+    <a href="https://wa.me/message/4ABPNKUC377DM1?text=Hola,%20quisiera%20informacion%20sobre%20Inicial%20y%20Primaria" class="btn-estrellitas" target="_blank">
+      📲 Consulta por Inicial y Primaria en WhatsApp
+    </a>
+  </div>
+
+  <!-- HORARIOS Y TARIFAS -->
+  <section class="precios" id="precios">
+    <h2>Horarios y Tarifas</h2>
+    <div class="cards-container">
+      <div class="card">
+        <h3>Turno Mañana</h3>
+        <p>8:30 a.m. - 12:45 p.m.</p>
+        <div class="precio">S/ 400 <small>/ mes</small></div>
+        <p>Aprendizaje y estimulación temprana.</p>
+      </div>
+      <div class="card">
+        <h3>Turno Tarde</h3>
+        <p>2:00 p.m. - 6:00 p.m.</p>
+        <div class="precio">S/ 400 <small>/ mes</small></div>
+        <p>Recreación, cuidado y talleres.</p>
+      </div>
+      <div class="card destacada">
+        <h3>⭐ Todo el Día</h3>
+        <p>8:30 a.m. - 5:00 p.m.</p>
+        <div class="precio">S/ 700 <small>/ mes</small></div>
+        <p>Atención integral, descanso y desarrollo completo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="comentarios" id="resenas">
+    <h2>💬 Lo que dicen las Familias</h2>
+    <div class="reviews-list" id="reviews-container">
+      <div class="review-card">
+        <p>"Un lugar súper seguro y limpio. Mi hijo ama ir a jugar con Pingüi y sus profesoras."</p>
+        <span class="author">⭐ ⭐ ⭐ ⭐ ⭐ - Mamá de Thiago</span>
+      </div>
+      <div class="review-card">
+        <p>"Excelente atención, la paciencia del personal es increíble. Muy recomendados."</p>
+        <span class="author">⭐ ⭐ ⭐ ⭐ ⭐ - Papá de Sofía</span>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE RESEÑA -->
+    <div class="form-resena">
+      <h3>✍️ Déjanos tu opinión</h3>
+      <form id="commentForm">
+        <label>Nombre:</label>
+        <input type="text" id="authorName" placeholder="Ej: Mamá de Mateo" required>
+        <label>Comentario:</label>
+        <textarea id="commentText" rows="3" placeholder="Escribe tu experiencia..." required></textarea>
+        <button type="submit" class="btn-submit">Publicar Reseña</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SECCIÓN REDES SOCIALES (4 REDES EXACTAS) -->
+  <div class="redes-seccion" id="redes">
+    <h3>🌐 Conéctate con Nosotros</h3>
+    <div class="cinta-aviso-interna">
+      📲 Atención y llamadas exclusivamente vía WhatsApp
+    </div>
+    <div class="grid-redes">
+      <a href="https://wa.me/message/5GIE76OC67MKC1" class="btn-red btn-ws" target="_blank">
+        💬 WhatsApp
+      </a>
+      <a href="https://www.facebook.com/share/16eS9QeRnm/?mibextid=wwXIfr" class="btn-red btn-fb" target="_blank">
+        📘 Facebook
+      </a>
+      <a href="https://www.instagram.com/magiicstar_?igsh=OGs3bGExczQ1eXlk&utm_source=qr" class="btn-red btn-ig" target="_blank">
+        📷 Instagram
+      </a>
+      <a href="https://www.tiktok.com/@magicstar.11?_r=1&_t=ZS-98OLZA3NefB" class="btn-red btn-tk" target="_blank">
+        🎵 TikTok
+      </a>
+    </div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a href="https://wa.me/message/5GIE76OC67MKC1" class="wspp-flotante" target="_blank">
+    💬 WhatsApp
+  </a>
+
+  <script>
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('authorName').value;
+      const text = document.getElementById('commentText').value;
+
+      const container = document.getElementById('reviews-container');
+      const newCard = document.createElement('div');
+      newCard.className = 'review-card';
+      newCard.innerHTML = `<p>"${text}"</p><span class="author">⭐ ⭐ ⭐ ⭐ ⭐ - ${name}</span>`;
+
+      container.appendChild(newCard);
+
+      document.getElementById('authorName').value = '';
+      document.getElementById('commentText').value = '';
+      alert('¡Gracias por compartir tu reseña!');
+    });
+  </script>
+
+</body>
+</html>
